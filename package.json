@@ -1,0 +1,42 @@
+{
+    "name": "WebScrob",
+    "version": "0.0.1",
+    "description": "A browser extension that scrobbles what you're watching",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/0Delfo0/WebScrob.git"
+    },
+    "author": "0Delfo0",
+    "license": "MIT",
+    "scripts": {
+        "lint": "eslint src --fix",
+        "build-chrome": "npm run lint && gulp chrome",
+        "build-firefox": "npm run lint && gulp firefox"
+    },
+    "dependencies": {
+        "cheerio": "^1.0.0-rc.2",
+        "lodash": "^4.17.4",
+        "request": "^2.81.0",
+        "traktapi2": "^1.4.0",
+        "xml2js": "^0.4.17"
+    },
+    "devDependencies": {
+        "babel-core": "^6.25.0",
+        "babel-preset-es2015": "^6.24.1",
+        "babelify": "^7.3.0",
+        "browserify": "^14.4.0",
+        "del": "^3.0.0",
+        "eslint": "^4.2.0",
+        "eslint-config-standard": "^10.2.1",
+        "eslint-plugin-import": "^2.7.0",
+        "eslint-plugin-node": "^5.1.0",
+        "eslint-plugin-promise": "^3.5.0",
+        "eslint-plugin-standard": "^3.0.1",
+        "gulp": "^3.9.1",
+        "gulp-uglify": "^3.0.0",
+        "merge2": "^1.1.0",
+        "run-sequence": "^2.0.0",
+        "vinyl-buffer": "^1.0.0",
+        "vinyl-source-stream": "^1.1.0"
+    }
+}

@@ -1,0 +1,47 @@
+{
+  "manifest_version": 2,
+
+  "name": "WebScrob",
+  "version": "0.0.1",
+  "description": "Scrobbles what you're watching",
+  "homepage_url": "https://github.com/0Delfo0/WebScrob",
+
+  "applications": {
+    "gecko": {
+      "id": "WebScrob@mozilla.org",
+      "strict_min_version": "45.0"
+    }
+  },
+
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+
+  "background": {
+    "scripts": ["bundle.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+
+  "browser_action": {
+    "default_icon": "images/icon48.png",
+    "default_title": "WebScrob",
+    "default_popup": "popup/popup.html"
+  },
+
+  "permissions": [
+    "<all_urls>",
+    "background",
+    "notifications",
+    "tabs",
+    "storage"
+  ]
+}
