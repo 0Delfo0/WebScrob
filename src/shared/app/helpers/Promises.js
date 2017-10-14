@@ -1,7 +1,7 @@
 import * as _ from 'lodash'
 
 export class Promises {
-  static retry (promise, args, maxTries = 3) {
+  static retry(promise, args, maxTries = 3) {
     return new Promise((resolve, reject) => {
       promise.apply(this, args)
         .then((result) => resolve(result))
@@ -14,7 +14,7 @@ export class Promises {
     })
   }
 
-  static forceAll (promises) {
+  static forceAll(promises) {
     promises = promises.map(promise => new Promise((resolve, reject) => {
       promise
         .then(result => resolve(result))

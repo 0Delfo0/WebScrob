@@ -1,5 +1,4 @@
 import { TrackingService } from '../base/TrackingService'
-// import { Tracking } from '../base/TrackingType'
 
 import * as _ from 'lodash'
 
@@ -15,53 +14,53 @@ const createXMLForm = (json) => {
 }
 
 export class MyAnimeList extends TrackingService {
-  authorization () {
+  authorization() {
     const joined = `${this.user}:${this.pass}`
     const b64 = Buffer.from(joined).toString('base64')
     return `Basic ${b64}`
   }
 
-  verifyCredentials () {
+  verifyCredentials() {
     return this.useAPI(this.api('account/verify_credentials.xml'), {})
   }
 
-  api (suffix) {
+  api(suffix) {
     return `https://myanimelist.net/api/${suffix}`
   }
 
-  anime (suffix) {
+  anime(suffix) {
     return this.api(`anime/${suffix}`)
   }
 
-  animelist (suffix) {
+  animelist(suffix) {
     return this.api(`animelist/${suffix}`)
   }
 
-  manga (suffix) {
+  manga(suffix) {
     return this.api(`manga/${suffix}`)
   }
 
-  mangalist (suffix) {
+  mangalist(suffix) {
     return this.api(`mangalist/${suffix}`)
   }
 
-  addAnime (id, json) {
+  addAnime(id, json) {
     return this.useAPI(this.animelist(`add/${id}.xml`), createXMLForm(json))
   }
 
-  updateAnime (id, json) {
+  updateAnime(id, json) {
     return this.useAPI(this.animelist(`update/${id}.xml`), createXMLForm(json))
   }
 
-  addManga (id, json) {
+  addManga(id, json) {
     return this.useAPI(this.mangalist(`add/${id}.xml`), createXMLForm(json))
   }
 
-  updateManga (id, json) {
+  updateManga(id, json) {
     return this.useAPI(this.mangalist(`update/${id}.xml`), createXMLForm(json))
   }
 
-  search (apiURL, query) {
+  search(apiURL, query) {
     return new Promise((resolve, reject) =>
       this.useAPI(apiURL, { q: query })
         .then((result) => {
@@ -79,15 +78,15 @@ export class MyAnimeList extends TrackingService {
         }).catch((err) => reject(err)))
   }
 
-  searchAnime (query) {
+  searchAnime(query) {
     return this.search(this.anime('search.xml'), query)
   }
 
-  searchManga (query) {
+  searchManga(query) {
     return this.search(this.manga('search.xml'), query)
   }
 
-  appinfo (id, type = 'anime') {
+  appinfo(id, type = 'anime') {
     return new Promise((resolve, reject) => {
       let url = `https://myanimelist.net/malappinfo.php?u=${this.user}&status=1&type=${type}`
       request({
@@ -108,7 +107,7 @@ export class MyAnimeList extends TrackingService {
     })
   }
 
-  findListEntry (id, type = 'anime') {
+  findListEntry(id, type = 'anime') {
     return new Promise((resolve, reject) => {
       let usingAnime = (type === 'anime')
       this.appinfo(id, type)
@@ -124,7 +123,7 @@ export class MyAnimeList extends TrackingService {
     })
   }
 
-  checkEpisode (id, type = 'anime') {
+  checkEpisode(id, type = 'anime') {
     return new Promise((resolve, reject) => {
       let usingAnime = (type === 'anime')
       this.findListEntry(id, type)
@@ -139,7 +138,7 @@ export class MyAnimeList extends TrackingService {
     })
   }
 
-  updateAnimeList (id, status, episode) {
+  updateAnimeList(id, status, episode) {
     return new Promise((resolve, reject) => {
       this.findListEntry(id)
         .then(result => {

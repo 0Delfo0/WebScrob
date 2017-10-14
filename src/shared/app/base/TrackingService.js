@@ -5,47 +5,43 @@ import { Unicode } from '../helpers/Unicode'
 const request = require('request')
 
 export class TrackingService {
-  constructor () {
+  constructor(trackingType) {
+    this.trackingType = trackingType
     this.user = null
     this.password = null
   }
 
-  authorization () { }
+  authorization() { }
 
-  authenticate (user, pass) {
-    this.user = user
-    this.pass = pass
-  }
+  verifyCredentials() { }
 
-  verifyCredentials () { }
+  api(suffix) { }
 
-  api (suffix) { }
+  anime(suffix) { }
 
-  anime (suffix) { }
+  animelist(suffix) { }
 
-  animelist (suffix) { }
+  manga(suffix) { }
 
-  manga (suffix) { }
+  mangalist(suffix) { }
 
-  mangalist (suffix) { }
+  addAnime(id, json) { }
 
-  addAnime (id, json) { }
+  updateAnime(id, json) { }
 
-  updateAnime (id, json) { }
+  addManga(id, json) { }
 
-  addManga (id, json) { }
+  updateManga(id, json) { }
 
-  updateManga (id, json) { }
+  search(apiURL, query) { }
 
-  search (apiURL, query) { }
+  findListEntry(id, type = 'anime') { }
 
-  findListEntry (id, type = 'anime') { }
+  checkEpisode(id, type = 'anime') { }
 
-  checkEpisode (id, type = 'anime') { }
+  updateAnimeList(id, status, episode) { }
 
-  updateAnimeList (id, status, episode) { }
-
-  useAPI (apiURL, json) {
+  useAPI(apiURL, json) {
     return new Promise((resolve, reject) => {
       request.post({
         url: apiURL,
@@ -65,7 +61,7 @@ export class TrackingService {
     })
   }
 
-  resolveAnimeSearch (title) {
+  resolveAnimeSearch(title) {
     let titles = this.findNormalTitles(title)
     return new Promise((resolve, reject) => {
       Promises.forceAll(titles.map(aTitle => this.searchAnime(aTitle)))
@@ -74,7 +70,7 @@ export class TrackingService {
     })
   }
 
-  findNormalTitles (title) {
+  findNormalTitles(title) {
     let lower = title.toLowerCase()
     let season = -1
     let seasonRegex = /season (\d+)/g

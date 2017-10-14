@@ -1,15 +1,15 @@
 import { MediaHandler, MIN_CYCLE } from '../base/MediaHandler'
 
 export class AnimeHavenHandler extends MediaHandler {
-  accept (url) {
+  accept(url) {
     return url.indexOf('animehaven.org') >= 0 && url.indexOf('episode') >= 0
   }
 
-  verify (source, cycle, $) {
+  verify(source, cycle, $) {
     return super.lifeOf(cycle) > MIN_CYCLE
   }
 
-  parseData (source, $) {
+  parseData(source, $) {
     let data = $('h1[class*=entry-title]').text().split(' – Episode ')
     let title = data[0]
     let episode = super.parseNumber(data[1])

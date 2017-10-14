@@ -1,7 +1,7 @@
 let lastTab = null
 
 export class WebExtension {
-  static getCurrentTab () {
+  static getCurrentTab() {
     return new Promise((resolve, reject) => {
       // eslint-disable-next-line no-undef
       chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
@@ -19,7 +19,7 @@ export class WebExtension {
     })
   }
 
-  static getCurrentTabURL () {
+  static getCurrentTabURL() {
     return new Promise((resolve, reject) => {
       this.getCurrentTab()
         .then(tab => resolve(tab.url))
@@ -27,7 +27,7 @@ export class WebExtension {
     })
   }
 
-  static getPageSource (tabId) {
+  static getPageSource(tabId) {
     return new Promise((resolve, reject) => {
       // eslint-disable-next-line no-undef
       chrome.tabs.sendMessage(tabId, { action: 'fetchSource' }, (response) => {
@@ -40,7 +40,7 @@ export class WebExtension {
     })
   }
 
-  static getCurrentPageSource () {
+  static getCurrentPageSource() {
     return new Promise((resolve, reject) => {
       // eslint-disable-next-line no-undef
       this.getCurrentTab()

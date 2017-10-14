@@ -5,7 +5,7 @@ var pass = document.getElementById('pass')
 port.postMessage({ action: 'requestCreds' })
 var service = document.getElementById('service')
 var submit = document.getElementById('save')
-submit.onclick = function () {
+submit.onclick = function() {
   port.postMessage({
     action: 'auth',
     username: user.value,
@@ -13,7 +13,7 @@ submit.onclick = function () {
     service: service.options[service.selectedIndex].value
   })
 }
-port.onMessage.addListener(function (msg) {
+port.onMessage.addListener(function(msg) {
   if (msg) {
     if (msg.action === 'auth') {
       if (msg.success === true) {

@@ -1,15 +1,15 @@
 import { MediaHandler, MIN_CYCLE } from '../base/MediaHandler'
 
 export class GoGoAnimeHandler extends MediaHandler {
-  accept (url) {
+  accept(url) {
     return url.indexOf('gogoanime.io') >= 0 && url.indexOf('episode') >= 0
   }
 
-  verify (source, cycle, $) {
+  verify(source, cycle, $) {
     return super.lifeOf(cycle) > MIN_CYCLE
   }
 
-  parseData (source, $) {
+  parseData(source, $) {
     let data = $('meta[name=description]').attr('content').split(' Episode ')
     console.log(JSON.stringify(data))
     let title = data[0]

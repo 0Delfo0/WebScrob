@@ -1,11 +1,11 @@
 class Task {
-  constructor (func, timeout) {
+  constructor(func, timeout) {
     this.func = func
     this.timeout = timeout
     this.alive = true
   }
 
-  start () {
+  start() {
     if (this.alive) {
       setTimeout(() => {
         this.func()

@@ -1,15 +1,15 @@
 import { MediaHandler, MIN_CYCLE } from '../base/MediaHandler'
 
 export class NetflixHandler extends MediaHandler {
-  accept (url) {
+  accept(url) {
     return url.indexOf('netflix.com/watch') >= 0
   }
 
-  verify (source, cycle, $) {
+  verify(source, cycle, $) {
     return super.lifeOf(cycle) > MIN_CYCLE
   }
 
-  parseData (source, $) {
+  parseData(source, $) {
     let parent = $('div[class*=player-status]')
     let title = parent.find('span[class*=player-status-main-title]').text()
     let episode = parent.children('span:not(.player-status-main-title)').eq(0).text()

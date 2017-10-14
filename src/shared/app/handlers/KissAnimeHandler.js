@@ -1,15 +1,15 @@
 import { MediaHandler, MIN_CYCLE } from '../base/MediaHandler'
 
 export class KissAnimeHandler extends MediaHandler {
-  accept (url) {
+  accept(url) {
     return url.indexOf('kissanime.ru') >= 0 && url.indexOf('episode-') >= 0
   }
 
-  verify (source, cycle, $) {
+  verify(source, cycle, $) {
     return super.lifeOf(cycle) > MIN_CYCLE
   }
 
-  parseData (source, $) {
+  parseData(source, $) {
     let title = $('div[id=navsubbar]').find('a').text().trim()
     title = title.split('\n')[1].trim()
     if (title && title.endsWith('(Sub)')) {

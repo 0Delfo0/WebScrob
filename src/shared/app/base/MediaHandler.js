@@ -1,23 +1,23 @@
 export const MIN_CYCLE = (1000 * 60 * 5)
 
 export class MediaHandler {
-  accept (url) {
+  accept(url) {
     return false
   }
 
-  verify (source, cycle, $) {
+  verify(source, cycle, $) {
     return true
   }
 
-  parseData (source, $) {
+  parseData(source, $) {
     return null
   }
 
-  lifeOf (cycle) {
+  lifeOf(cycle) {
     return (cycle.end ? cycle.end - cycle.start : new Date().getTime() - cycle.start)
   }
 
-  parseNumber (data) {
+  parseNumber(data) {
     return parseInt(data.match(/\d+/g), 10)
   }
 }
